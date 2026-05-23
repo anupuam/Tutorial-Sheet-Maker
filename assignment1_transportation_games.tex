@@ -1,0 +1,228 @@
+\documentclass[12pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array,booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% ── Header / Footer ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textbf{Operations Research}}
+\chead{Assignment 1}
+\rhead{2025--26}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
+% ── Document ──────────────────────────────────────────────────────────────────
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Assignment 1}}\\[4pt]
+  {\large \textbf{Transportation Problems, Assignment Problems \&}}\\
+  {\large \textbf{Zero-Sum Matrix Games}}\\[4pt]
+  \textit{Answer any \textbf{eight} questions. All questions carry equal marks.}
+\end{center}
+
+\medskip\hrule\medskip
+
+\begin{enumerate}[leftmargin=*, label=\textbf{Q.\arabic*.}]
+
+% ── Q1 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Transportation Problem -- Basic Feasible Solution)}\\
+  A company has three factories $F_1, F_2, F_3$ with supplies of 120, 80, and
+  100 units respectively, and four warehouses $W_1, W_2, W_3, W_4$ with demands
+  of 60, 70, 90, and 80 units respectively. The unit transportation costs (in
+  \$) are given below.
+
+  \[
+    \begin{array}{c|cccc}
+      & W_1 & W_2 & W_3 & W_4 \\\hline
+      F_1 & 2   & 3   & 1   & 5   \\
+      F_2 & 7   & 3   & 4   & 6   \\
+      F_3 & 4   & 1   & 5   & 2   \\
+    \end{array}
+  \]
+
+  \begin{enumerate}[label=(\alph*)]
+    \item Verify that the problem is balanced.
+    \item Find an initial basic feasible solution using the \textit{North-West
+          Corner Method}.
+    \item Improve the solution using the \textit{MODI (UV) method} and find
+          the optimal solution.
+  \end{enumerate}
+
+% ── Q2 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Vogel's Approximation Method)}\\
+  Using the following transportation tableau, obtain an initial basic feasible
+  solution by \textit{Vogel's Approximation Method} and check optimality using
+  the stepping-stone method.
+
+  \[
+    \begin{array}{c|cccc|c}
+               & D_1 & D_2 & D_3 & D_4 & \text{Supply}\\\hline
+      O_1      & 3   & 1   & 7   & 4   & 300 \\
+      O_2      & 2   & 6   & 5   & 9   & 400 \\
+      O_3      & 8   & 3   & 3   & 2   & 500 \\\hline
+      \text{Demand} & 250 & 350 & 400 & 200 &
+    \end{array}
+  \]
+
+% ── Q3 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Degeneracy \& Resolution)}\\
+  \begin{enumerate}[label=(\alph*)]
+    \item Define \textit{degeneracy} in a transportation problem and explain
+          when and why it occurs.
+    \item A $3 \times 3$ balanced transportation problem yields only 4
+          non-degenerate allocations.  Describe the standard perturbation
+          ($\varepsilon$-method) to resolve degeneracy and find the optimal
+          solution for the following cost matrix (supply = \{10,15,25\},
+          demand = \{20,15,15\}):
+    \[
+      C = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 1 & 2 \\ 0 & 5 & 4 \end{pmatrix}.
+    \]
+  \end{enumerate}
+
+% ── Q4 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Assignment Problem -- Hungarian Method)}\\
+  Five jobs are to be assigned to five machines.  The time (in hours) to
+  perform each job on each machine is:
+
+  \[
+    \begin{array}{c|ccccc}
+      & M_1 & M_2 & M_3 & M_4 & M_5\\\hline
+      J_1 & 9  & 2  & 7  & 8  & 6 \\
+      J_2 & 6  & 4  & 3  & 7  & 5 \\
+      J_3 & 5  & 8  & 1  & 8  & 7 \\
+      J_4 & 7  & 6  & 9  & 4  & 3 \\
+      J_5 & 4  & 3  & 8  & 5  & 2 \\
+    \end{array}
+  \]
+
+  Apply the \textit{Hungarian Algorithm} to find the optimal assignment and
+  the minimum total time.
+
+% ── Q5 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Maximisation Assignment Problem)}\\
+  A marketing manager wants to assign four salesmen to four territories to
+  maximise total sales.  The expected sales (in thousands) are:
+
+  \[
+    \begin{array}{c|cccc}
+      & T_1 & T_2 & T_3 & T_4\\\hline
+      S_1 & 42 & 35 & 28 & 21 \\
+      S_2 & 30 & 25 & 20 & 15 \\
+      S_3 & 30 & 25 & 20 & 15 \\
+      S_4 & 24 & 20 & 16 & 12 \\
+    \end{array}
+  \]
+
+  \begin{enumerate}[label=(\alph*)]
+    \item Convert this to a minimisation problem.
+    \item Apply the Hungarian Algorithm to find the optimal assignment.
+    \item Comment on whether there are multiple optimal assignments.
+  \end{enumerate}
+
+% ── Q6 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Zero-Sum Game -- Saddle Point)}\\
+  For the two-player zero-sum game with the following payoff matrix (payoffs to
+  Player~I):
+
+  \[
+    A = \begin{pmatrix}
+          4 & -1 & 6 \\
+         -2 &  5 & 3 \\
+          1 &  2 & 0 \\
+        \end{pmatrix}
+  \]
+
+  \begin{enumerate}[label=(\alph*)]
+    \item Define the \textit{maximin} and \textit{minimax} strategies.
+    \item Determine whether a saddle point exists.  If so, identify it and
+          state the value of the game.
+    \item Verify your answer by stating the optimal pure strategies for both
+          players.
+  \end{enumerate}
+
+% ── Q7 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Dominance and Reduced Game)}\\
+  Consider the payoff matrix
+  \[
+    B = \begin{pmatrix}
+          1 & 7 & 3 & 4 \\
+          5 & 6 & 4 & 5 \\
+          7 & 2 & 0 & 3 \\
+        \end{pmatrix}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Apply the \textit{principle of dominance} to reduce the matrix as far
+          as possible.
+    \item Determine the optimal mixed strategies and the value of the game for
+          the reduced matrix.
+  \end{enumerate}
+
+% ── Q8 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(LP Formulation of Matrix Games)}\\
+  A zero-sum game has payoff matrix
+  \[
+    C = \begin{pmatrix}
+          3 & -1 \\
+         -2 &  4 \\
+        \end{pmatrix}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Show that no saddle point exists and explain why mixed strategies are
+          necessary.
+    \item Formulate the game as a \textit{linear program} for Player~I
+          (the maximising player).  Write the dual LP for Player~II.
+    \item Solve both LPs and state the optimal mixed strategies
+          $(p_1^*, p_2^*)$ and $(q_1^*, q_2^*)$ along with the value of the
+          game $v$.
+  \end{enumerate}
+
+% ── Q9 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(LP Formulation -- General Case)}\\
+  Prove that every finite two-player zero-sum game in which the payoff matrix
+  has no saddle point can be solved by linear programming.  Specifically:
+  \begin{enumerate}[label=(\alph*)]
+    \item Starting from the minimax theorem
+          $\max_p \min_q p^T A q = \min_q \max_p p^T A q = v$,
+          derive the LP for Player~I.
+    \item State the corresponding LP for Player~II and show it is the dual of
+          Player~I's LP.
+    \item Explain how a positive constant $k$ can always be added to make all
+          entries of $A$ positive, and how this simplifies the LP.
+  \end{enumerate}
+
+% ── Q10 ───────────────────────────────────────────────────────────────────────
+\item \textbf{(Comprehensive Problem)}\\
+  A company operates two plants ($P_1, P_2$) and serves three markets
+  ($M_1, M_2, M_3$).  Supplies are 200 and 300 units; demands are 150, 200,
+  and 250 units less an allowable shortage.  Unit transportation costs (\$) are:
+  \[
+    \begin{array}{c|ccc}
+      & M_1 & M_2 & M_3\\\hline
+      P_1 & 4 & 8 & 1 \\
+      P_2 & 7 & 2 & 3 \\
+    \end{array}
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Formulate and solve the transportation problem to minimise cost.
+    \item Two competitors use mixed strategies in a pricing game; represent the
+          market-share payoff matrix and find the optimal pricing strategies
+          using LP.
+    \item Comment on how the transportation allocation and pricing strategies
+          can be combined into a single decision framework.
+  \end{enumerate}
+
+\end{enumerate}
+
+\medskip\hrule\medskip
+\begin{center}
+  \textit{--- End of Assignment 1 ---}
+\end{center}
+
+\end{document}

@@ -1,0 +1,208 @@
+\documentclass[12pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array,booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% ── Header / Footer ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textbf{Operations Research}}
+\chead{Assignment 2}
+\rhead{2025--26}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
+% ── Theorem-like environments ─────────────────────────────────────────────────
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+
+% ── Document ──────────────────────────────────────────────────────────────────
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Assignment 2}}\\[4pt]
+  {\large \textbf{Nonlinear Programming, KKT Conditions \&}}\\
+  {\large \textbf{Quadratic Programming}}\\[4pt]
+  \textit{Answer any \textbf{eight} questions. All questions carry equal marks.}
+\end{center}
+
+\medskip\hrule\medskip
+
+\begin{enumerate}[leftmargin=*, label=\textbf{Q.\arabic*.}]
+
+% ── Q1 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Unconstrained Nonlinear Optimisation)}\\
+  Consider the function
+  \[
+    f(x_1, x_2) = 2x_1^2 + x_2^2 - 2x_1 x_2 - 4x_1 + 6.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Find all stationary points by setting $\nabla f = \mathbf{0}$.
+    \item Use the second-order (Hessian) test to classify each stationary
+          point as a local minimum, local maximum, or saddle point.
+    \item State the global minimum value and the point at which it is attained,
+          justifying your answer.
+  \end{enumerate}
+
+% ── Q2 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Lagrange Multipliers -- Equality Constraints)}\\
+  Minimise $f(x,y,z) = x^2 + y^2 + z^2$ subject to the constraints
+  \[
+    x + 2y + 3z = 6 \quad \text{and} \quad x + y = 2.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Write the Lagrangian $\mathcal{L}(x,y,z,\lambda_1,\lambda_2)$ and
+          state the necessary conditions $\nabla \mathcal{L} = \mathbf{0}$.
+    \item Solve the system to find the optimal point $(x^*, y^*, z^*)$ and
+          the multiplier values $\lambda_1^*, \lambda_2^*$.
+    \item Interpret the multipliers geometrically.
+  \end{enumerate}
+
+% ── Q3 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Karush--Kuhn--Tucker (KKT) Conditions)}\\
+  State the KKT necessary optimality conditions for the general nonlinear
+  program
+  \[
+    \min_{x \in \mathbb{R}^n} f(x) \quad \text{subject to} \quad
+    g_i(x) \le 0,\ i = 1,\ldots,m;\quad h_j(x) = 0,\ j = 1,\ldots,p.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Write the KKT conditions explicitly, including the complementary
+          slackness conditions.
+    \item Apply the KKT conditions to find the optimal solution of:
+          \[
+            \min\; x_1^2 + x_2^2 \quad \text{s.t.} \quad
+            x_1 + x_2 \ge 4,\; x_1 \ge 0,\; x_2 \ge 0.
+          \]
+    \item Verify that the constraint qualification (LICQ) holds at the
+          optimal point.
+  \end{enumerate}
+
+% ── Q4 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Sufficiency of KKT under Convexity)}\\
+  \begin{enumerate}[label=(\alph*)]
+    \item Prove that if $f$ is convex and differentiable, the feasible set is
+          convex, and a point $x^*$ satisfies the KKT conditions, then $x^*$
+          is a \emph{global} minimiser.
+    \item For the problem
+          \[
+            \min\; (x_1-3)^2 + (x_2-2)^2 \quad \text{s.t.} \quad
+            x_1^2 + x_2^2 \le 5,\; x_1 + x_2 \le 4,
+          \]
+          verify convexity of the objective and feasible set, find the KKT
+          point, and confirm it is a global minimiser.
+  \end{enumerate}
+
+% ── Q5 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Quadratic Programming -- Problem Formulation)}\\
+  A portfolio manager allocates wealth among three assets with expected returns
+  $r = (0.12, 0.10, 0.15)^T$ and covariance matrix
+  \[
+    \Sigma = \begin{pmatrix}
+               0.04 & 0.01 & 0.02 \\
+               0.01 & 0.09 & 0.03 \\
+               0.02 & 0.03 & 0.16 \\
+             \end{pmatrix}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Formulate the \textit{mean-variance portfolio optimisation} problem
+          as a quadratic program to minimise portfolio variance subject to a
+          target return of $12\%$ and full investment ($\sum w_i = 1$,
+          $w_i \ge 0$).
+    \item Write out the Lagrangian and KKT conditions for this QP.
+    \item Identify which KKT conditions are active at a feasible point where
+          only assets~1 and~3 are held.
+  \end{enumerate}
+
+% ── Q6 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Wolfe's Modified Simplex Method)}\\
+  Use \textit{Wolfe's method} to solve the quadratic program:
+  \[
+    \min\; f(x_1, x_2) = x_1^2 + x_2^2 - 6x_1 - 4x_2 + 13
+    \quad\text{s.t.}\quad x_1 + x_2 \le 4,\; x_1, x_2 \ge 0.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Write the KKT conditions and construct the Wolfe auxiliary LP
+          (including artificial variables if necessary).
+    \item Perform the simplex iterations to reach an optimal tableau.
+    \item Recover the optimal solution $(x_1^*, x_2^*)$ and minimum value
+          $f^*$.
+  \end{enumerate}
+
+% ── Q7 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Wolfe's Method -- Theoretical Aspects)}\\
+  \begin{enumerate}[label=(\alph*)]
+    \item Explain the key idea behind Wolfe's method: how the KKT conditions
+          are converted into a linear complementarity problem (LCP) that can
+          be solved by a modified simplex algorithm.
+    \item State the \textit{complementarity condition} that must be enforced
+          throughout Wolfe's simplex iterations and explain its significance.
+    \item For a strictly convex QP, prove that Wolfe's method terminates in a
+          finite number of steps.
+  \end{enumerate}
+
+% ── Q8 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Application -- Production Planning QP)}\\
+  A factory produces two products.  The profit function (concave) is
+  \[
+    P(x_1, x_2) = 5x_1 + 4x_2 - \tfrac{1}{2}x_1^2 - \tfrac{1}{4}x_2^2
+                  - \tfrac{1}{4}x_1 x_2,
+  \]
+  subject to $x_1 + x_2 \le 8$, $x_1 \le 5$, $x_2 \le 6$, $x_1, x_2 \ge 0$.
+  \begin{enumerate}[label=(\alph*)]
+    \item State this as a maximisation QP and rewrite it as a standard
+          minimisation QP.
+    \item Write the KKT conditions.  Use them to identify which constraints
+          are active at the optimum.
+    \item Solve for the optimal production quantities and maximum profit.
+  \end{enumerate}
+
+% ── Q9 ────────────────────────────────────────────────────────────────────────
+\item \textbf{(Convexity and KKT -- Theoretical Questions)}\\
+  \begin{enumerate}[label=(\alph*)]
+    \item Define a \textit{convex function} and a \textit{convex set}.  State
+          and prove that if $f$ is a convex function on a convex set $S$ then
+          every local minimum is a global minimum.
+    \item A quadratic function $f(x) = \tfrac{1}{2} x^T Q x + c^T x + d$
+          is strictly convex if and only if $Q \succ 0$ (positive definite).
+          Prove this statement.
+    \item Give a counterexample showing that KKT conditions are necessary but
+          not sufficient for a nonconvex problem.
+  \end{enumerate}
+
+% ── Q10 ───────────────────────────────────────────────────────────────────────
+\item \textbf{(Comprehensive Application -- QP and Game Theory Link)}\\
+  Consider the following quadratic program arising from an equilibrium pricing
+  problem:
+  \[
+    \min_{x \in \mathbb{R}^2}\; \tfrac{1}{2}x^T Q x - r^T x \quad\text{s.t.}\quad Ax \le b,
+  \]
+  where
+  \[
+    Q = \begin{pmatrix} 4 & 1 \\ 1 & 2 \end{pmatrix},\quad
+    r = \begin{pmatrix} 8 \\ 6 \end{pmatrix},\quad
+    A = \begin{pmatrix} 1 & 1 \\ -1 & 0 \\ 0 & -1 \end{pmatrix},\quad
+    b = \begin{pmatrix} 5 \\ 0 \\ 0 \end{pmatrix}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Verify that $Q$ is positive definite and hence the problem is a
+          strictly convex QP.
+    \item Formulate the KKT conditions and solve the system to find $x^*$.
+    \item Apply Wolfe's method to confirm the solution found in part (b).
+    \item Briefly discuss how the dual variables can be interpreted as shadow
+          prices in the context of pricing equilibrium.
+  \end{enumerate}
+
+\end{enumerate}
+
+\medskip\hrule\medskip
+\begin{center}
+  \textit{--- End of Assignment 2 ---}
+\end{center}
+
+\end{document}
